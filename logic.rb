@@ -1,58 +1,21 @@
-
-class Player
-  attr_accessor :life
-  def initialize()
-    @life = 3
-  end
-  def lose_life()
-    @life -= 1
-end
-# player 
-# players role
-# store  
-# - life
-
-# action 
-# - update life
-
-class Question
-  def initialize()
-    @num1 = rand(1...20)
-    @num2 = rand(1...20)
-  end
-  def question()
-    put "What does #{@num1} plus #{@num2} equal?"
-  end
-  def answer
-    answer = @num1 + @num2
-  end
-end
-# question
-# store 
-# - question string 
-# - 2 variable that change numbers
-
-# action 
-# - ask question with 2 numbers 
-
-
-
 class Logic
 
   def initialize
     @player1 = Player.new
     @player2 = Player.new
     @turn = 1
-
+  end
+  
   def ask_question
     question = Question.new()
-    puts "Player #{@turn}: " question.question()
+    print "Player #{@turn}: " 
+    question.question
     print "> "
     choice = $stdin.gets.chomp
-    if choice == question.answer()
-      self.right()
+    if choice == question.answer.to_s
+      self.right
     else 
-      self.wrong()
+      self.wrong
     end
   end
 
@@ -77,12 +40,24 @@ class Logic
     @player2.lose_life()
     puts "Player #{@turn}: Seriously? No!"
     if @player2.life == 0 
-      "Player 1 wins with a score of #{@player1.life}/3"
+      puts "Player 1 wins with a score of #{@player1.life}/3"
       puts "----- GAME OVER -----"
       puts "Good bye!"
     else 
     self.score()
     end
+  else 
+    @turn == 1
+    @player1.lose_life()
+    puts "Player #{@turn}: Seriously? No!"
+    if @player1.life == 0 
+      puts "Player 2 wins with a score of #{@player2.life}/3"
+      puts "----- GAME OVER -----"
+      puts "Good bye!"
+    else 
+    self.score()
+    end
+  end
   end
 end
 

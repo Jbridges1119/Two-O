@@ -1,4 +1,3 @@
-
 class Player
   attr_accessor :life
   def initialize()
@@ -6,6 +5,7 @@ class Player
   end
   def lose_life()
     @life -= 1
+  end
 end
 # player 
 # players role

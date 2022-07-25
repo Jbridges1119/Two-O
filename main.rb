@@ -2,5 +2,6 @@ require './question'
 require './player'
 require './logic'
 
-Logic.new()
+game = Logic.new()
+game.ask_question
 
